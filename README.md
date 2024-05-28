@@ -2,6 +2,7 @@
 
 - 📜 &nbsp;Language:&nbsp;
   ![Javascript](https://img.shields.io/badge/-JavaScript-0A1A2F?style=flat&logo=Javascript&logoColor=yellow)
+  ![TypeScript](https://img.shields.io/badge/-TypeScript-0A1A2F?style=flat&logo=TypeScript&logoColor=yellow)
   ![Python](https://img.shields.io/badge/-Python-0A1A2F?style=flat&logo=Python)
 - 📱 &nbsp;Mobile:&nbsp;
   ![Flutter](https://img.shields.io/badge/-Flutter-0A1A2F?style=flat&logo=Flutter&logoColor=00d8fd)
