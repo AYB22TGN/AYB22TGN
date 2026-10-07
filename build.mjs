@@ -114,8 +114,7 @@ text{font-family:${SANS};fill:${t.tx}}
     `<text class="lab" x="24" y="34">SO BARBERS · EN PRODUCTION</text>` +
     `<text class="h3" x="24" y="68">Un salon réel prend ses</text>` +
     `<text class="h3" x="24" y="90">rendez-vous en ligne.</text>` +
-    `<text class="sub" x="24" y="114">Impossible de réserver deux fois</text>` +
-    `<text class="sub" x="24" y="132">le même créneau.</text>` + slots();
+    `<text class="sub" x="24" y="114">sobarbers.com</text>` + slots();
   const pb =
     `<text class="lab" x="24" y="34">PROBENTA · SAAS CONFORMITÉ</text>` +
     `<text class="h3" x="24" y="68">Signaler une faille aux</text>` +
