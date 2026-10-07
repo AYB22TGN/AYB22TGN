@@ -35,17 +35,16 @@ function wave() {
   }
   return d.trim();
 }
-function squares() { // 130 carrés = 130 tests
+function slots() { // créneaux d'une journée, un seul peut être pris à la fois
   let o = '';
-  for (let r = 0; r < 5; r++) for (let c = 0; c < 26; c++) o += `<rect class="sq" x="${24 + c * 7}" y="${118 + r * 7}" width="5" height="5" rx="1"/>`;
+  for (let i = 0; i < 8; i++) o += `<rect class="${i === 3 ? 'seg' : 'segbg'}" x="${24 + i * 30}" y="146" width="25" height="12" rx="4"/>`;
   return o;
 }
-function graph() {
-  let o = '<path class="gl" d="M24 140 H260"/>';
-  for (let i = 0; i < 6; i++) {
-    const x = 34 + i * 38;
-    o += `<path class="gl" d="M${x} 140 C${x + 6} 122 ${x + 20} 122 ${x + 26} 140"/><circle class="gd" cx="${x + 26}" cy="140" r="3.5"/>`;
-  }
+function deadlines() { // délais de signalement du Cyber Resilience Act
+  let o = '<path class="gl" d="M24 140 H258"/>';
+  [[24, '24 h', 'start'], [141, '72 h', 'middle'], [258, '14 j', 'end']].forEach(([x, l, a]) => {
+    o += `<circle class="gd" cx="${x}" cy="140" r="4"/><text class="tiny" x="${x}" y="161" text-anchor="${a}">${l}</text>`;
+  });
   return o;
 }
 
@@ -60,6 +59,8 @@ text{font-family:${SANS};fill:${t.tx}}
 .big{font-weight:700;font-size:34px;letter-spacing:-.5px}
 .sub{font-size:13px;fill:${t.mu}}
 .lead{font-size:15px;font-weight:600}
+.h2{font-size:19px;font-weight:700}
+.h3{font-size:17px;font-weight:700}
 .tiny{font-family:${MONO};font-size:10px;fill:${t.mu}}
 .chip{fill:${t.chip}}
 .chiptx{font-family:${MONO};font-size:11px}
@@ -67,7 +68,7 @@ text{font-family:${SANS};fill:${t.tx}}
 .ring{fill:none;stroke:${t.ia};stroke-width:9;stroke-linecap:round}
 .ringnum{font-weight:700;font-size:22px}
 .wave{fill:none;stroke:${t.sa};stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.seg,.sq{fill:${t.ac}}.segbg{fill:${t.track}}
+.seg{fill:${t.ac}}.segbg{fill:${t.track}}
 .gl{fill:none;stroke:${t.ac};stroke-width:2;stroke-linecap:round}
 .gd{fill:${t.tile};stroke:${t.ac};stroke-width:2}
 @keyframes draw92{from{stroke-dashoffset:92}}
@@ -76,7 +77,7 @@ text{font-family:${SANS};fill:${t.tx}}
 @media (prefers-reduced-motion:no-preference){
 .ring{animation:draw92 1.6s cubic-bezier(.2,.7,.2,1) .2s backwards}
 .wave{animation:draw1 2.6s ease-out .2s backwards}
-.seg{transform-box:fill-box;transform-origin:left center;animation:grow 1.2s cubic-bezier(.2,.7,.2,1) .2s backwards}
+.prod .seg{transform-box:fill-box;transform-origin:left center;animation:grow 1.2s cubic-bezier(.2,.7,.2,1) .2s backwards}
 }`;
   const intro =
     `<g clip-path="url(#c)"><ellipse cx="500" cy="10" rx="300" ry="190" fill="url(#g1)" opacity=".6"/><ellipse cx="120" cy="250" rx="220" ry="110" fill="url(#g2)" opacity=".6"/></g>` +
@@ -98,35 +99,39 @@ text{font-family:${SANS};fill:${t.tx}}
     `<circle class="track" cx="76" cy="112" r="44"/>` +
     `<circle class="ring" cx="76" cy="112" r="44" pathLength="100" stroke-dasharray="92 100" transform="rotate(-90 76 112)"/>` +
     `<text class="ringnum" x="76" y="120" text-anchor="middle">92 %</text>` +
-    `<text class="lead" x="144" y="94">hit@3 sur 30 questions</text>` +
-    `<text class="sub" x="144" y="116">RAG documentaire + serveur MCP</text>` +
-    `<text class="sub" x="144" y="136">100 % de rejet hors-corpus</text>` +
-    chips(['Référent IA en entreprise', '2 automatisations recettées'], 24, 178, 390);
+    `<text class="lead" x="144" y="86">Un assistant documentaire</text>` +
+    `<text class="lead" x="144" y="106">qui cite ses sources</text>` +
+    `<text class="sub" x="144" y="128">La bonne source dans les 3 premiers</text>` +
+    `<text class="sub" x="144" y="146">résultats, 92 % du temps</text>` +
+    chips(['Ticket → merge request', 'Doc auto-entretenue · 4 dépôts'], 24, 178, 390);
   const sa =
     `<text class="lab" x="24" y="38">SANTÉ RÉGLEMENTÉE</text>` +
-    `<text class="num" x="24" y="88">18 mois</text>` +
-    `<text class="sub" x="24" y="110">sur dispositif médical certifié</text>` +
+    `<text class="h2" x="24" y="76">Suivi patient, utilisé chaque jour</text>` +
+    `<text class="sub" x="24" y="100">par des médecins et des prestataires de santé à domicile</text>` +
     `<path class="wave" pathLength="1" stroke-dasharray="1" d="${wave()}"/>` +
     chips(['MDR (UE) 2017/745', 'ISO 13485', 'IEC 62304', 'RGPD'], 24, 178, 390);
   const sb =
     `<text class="lab" x="24" y="34">SO BARBERS · EN PRODUCTION</text>` +
-    `<text class="num" x="24" y="82">130+</text>` +
-    `<text class="sub" x="24" y="104">tests · 22 policies RLS</text>` + squares();
+    `<text class="h3" x="24" y="68">Un salon réel prend ses</text>` +
+    `<text class="h3" x="24" y="90">rendez-vous en ligne.</text>` +
+    `<text class="sub" x="24" y="114">Impossible de réserver deux fois</text>` +
+    `<text class="sub" x="24" y="132">le même créneau.</text>` + slots();
   const pb =
     `<text class="lab" x="24" y="34">PROBENTA · SAAS CONFORMITÉ</text>` +
-    `<text class="num" x="24" y="82">106</text>` +
-    `<text class="sub" x="24" y="104">pull requests mergées sous CI</text>` + graph();
+    `<text class="h3" x="24" y="68">Signaler une faille aux</text>` +
+    `<text class="h3" x="24" y="90">autorités dans les délais.</text>` +
+    `<text class="sub" x="24" y="114">Règlement Cyber Resilience Act</text>` + deadlines();
   const st =
     `<text class="lab" x="24" y="34">STACK</text>` +
     chips(['Next.js', 'React', 'TypeScript', 'NestJS', 'Laravel', 'GraphQL', 'PostgreSQL', 'Docker'], 24, 54, 240);
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 882 618" role="img" aria-labelledby="t"><title id="t">Ayoub Tougani, développeur fullstack. IA et santé réglementée.</title><style>${css}</style>` +
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 882 634" role="img" aria-labelledby="t"><title id="t">Ayoub Tougani, développeur fullstack. IA et santé réglementée.</title><style>${css}</style>` +
     `<defs><clipPath id="c"><rect width="572" height="208" rx="${R}"/></clipPath>` +
     `<radialGradient id="g1"><stop offset="0" stop-color="#3D6BFF" stop-opacity=".9"/><stop offset="1" stop-color="#3D6BFF" stop-opacity="0"/></radialGradient>` +
     `<radialGradient id="g2"><stop offset="0" stop-color="#4FD6C0" stop-opacity=".45"/><stop offset="1" stop-color="#4FD6C0" stop-opacity="0"/></radialGradient></defs>` +
-    tile(0, 0, 572, 208, 'in', intro) + tile(584, 0, 296, 208, '', prod) +
+    tile(0, 0, 572, 208, 'in', intro) + tile(584, 0, 296, 208, 'prod', prod) +
     tile(0, 220, 434, 220, '', ia) + tile(446, 220, 434, 220, '', sa) +
-    tile(0, 452, 286, 164, '', sb) + tile(298, 452, 284, 164, '', pb) + tile(594, 452, 286, 164, '', st) +
+    tile(0, 452, 286, 180, '', sb) + tile(298, 452, 284, 180, '', pb) + tile(594, 452, 286, 180, '', st) +
     `</svg>\n`;
 }
 

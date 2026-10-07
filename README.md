@@ -5,8 +5,8 @@
 
 **Développeur fullstack à Nancy**, 4 ans et demi cumulés sur du code de production. Deux domaines où je vais plus loin :
 
-- **IA** : RAG, MCP, intégration LLM. Un RAG documentaire à 92 % hit@3 sur 30 questions. Référent IA en entreprise, 2 automatisations recettées.
-- **Santé réglementée** : 18 mois sur dispositif médical certifié MDR / ISO 13485, sur une application de suivi patient utilisée quotidiennement par des médecins.
-- **Fullstack** : React, Next.js, TypeScript, NestJS, Laravel, GraphQL, PostgreSQL. [So Barbers](https://sobarbers.com), une application de réservation en production : 130+ tests, 22 policies RLS.
+- **IA** : référent IA en entreprise. Deux automatisations recettées : un ticket devient une merge request, et la documentation technique de 4 dépôts se met à jour seule. Un assistant documentaire qui cite ses sources et refuse de répondre hors de son corpus.
+- **Santé réglementée** : une application de suivi patient utilisée chaque jour par des médecins et des prestataires de santé à domicile, sur dispositif médical certifié MDR / ISO 13485. Comptes protégés contre l'usurpation par double authentification.
+- **Fullstack** : React, Next.js, TypeScript, NestJS, Laravel, GraphQL, PostgreSQL. [So Barbers](https://sobarbers.com) : un salon réel prend ses rendez-vous en ligne, sans double réservation possible.
 
 [LinkedIn](https://www.linkedin.com/in/ayoubtougani)
